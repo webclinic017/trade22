@@ -56,8 +56,6 @@ class Bars:
         self.ha_bars = HAbars()
 
     def add(self, bar: Bar):
-        print(self.raw_bars)
-        print(bar)
         self.raw_bars.append(bar)
-        print(self.raw_bars)
-        self.ha_bars.add(bar)
+        ha_bar = self.ha_bars.add(bar)
+        return ha_bar
