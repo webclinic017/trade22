@@ -20,7 +20,6 @@ def decide(all_bars: Bars):
 
 def process_green(all_bars, pos):
     print("Processing GREEN")
-    pos = get_position()
     if pos < 0:
         close_short_go_long(all_bars, pos)
     elif pos == 0:
@@ -34,7 +33,6 @@ def process_green(all_bars, pos):
 
 def process_red(all_bars, pos):
     print("Processing RED")
-    pos = get_position()
     if pos < 0:
         # do nothing, stay short
         pass
@@ -48,7 +46,6 @@ def process_red(all_bars, pos):
 
 def process_yellow(all_bars, pos):
     print("Processing YELLOW")
-    pos = get_position()
     if pos < 0:
         close_short(all_bars, pos)
     elif pos == 0:
