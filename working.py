@@ -13,5 +13,5 @@ minute_bars = api.get_one_day_minute_bars(d)
 for minute_bar in minute_bars:
     pos = get_position()
     print("position =", pos)
-    current_ha_bar = all_bars.add(minute_bar)
-    decide(current_ha_bar, minute_bar)
+    all_bars.add(minute_bar)
+    decide(all_bars)

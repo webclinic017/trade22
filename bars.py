@@ -54,8 +54,12 @@ class Bars:
     def __init__(self):
         self.raw_bars: list = []
         self.ha_bars = HAbars()
+        self.last_raw_bar = None
+        self.last_habar = None
 
     def add(self, bar: Bar):
         self.raw_bars.append(bar)
         ha_bar = self.ha_bars.add(bar)
+        self.last_raw_bar = bar
+        self.last_habar = ha_bar
         return ha_bar
