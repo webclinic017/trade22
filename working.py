@@ -14,5 +14,4 @@ for minute_bar in minute_bars:
     pos = get_position()
     print("position =", pos)
     current_ha_bar = all_bars.add(minute_bar)
-    decide(current_ha_bar)
-
+    decide(current_ha_bar, minute_bar)

@@ -1,10 +1,10 @@
 import position
-from bars import HAbar
+from bars import HAbar, Bar
 from position import get_position, set_position
 
 
-def decide(bar: HAbar):
-    c = bar.color
+def decide(habar: HAbar, minute_bar: Bar):
+    c = habar.color
     match c:
         case 'GREEN':
             process_green()
