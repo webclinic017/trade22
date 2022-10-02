@@ -1,6 +1,7 @@
 import position
 from bars import HAbar, Bar, Bars
-from position import get_position, set_position
+from position import get_position, set_position, get_value,\
+    get_quantity, get_profit_loss, get_quantity_value
 
 
 def decide(all_bars: Bars):
@@ -21,9 +22,9 @@ def process_green(all_bars):
     print("Processing GREEN")
     pos = get_position()
     if pos["quantity"] < 0:
-        close_short_go_long(all_bars, pos)
+        close_short_open_long_position(all_bars, pos)
     elif pos["quantity"] == 0:
-        go_long(all_bars, pos)
+        open_long_position(all_bars, pos)
     elif pos["quantity"] > 0:
         # do nothing, stay long
         pass
@@ -38,9 +39,9 @@ def process_red(all_bars):
         # do nothing, stay short
         pass
     elif pos["quantity"] == 0:
-        go_short(all_bars, pos)
+        open_short_position(all_bars, pos)
     elif pos["quantity"] > 0:
-        close_long_go_short(all_bars, pos)
+        close_long_open_short_position(all_bars, pos)
     else:
         raise Exception("Position value problem")
 
@@ -64,22 +65,25 @@ def process_yellow(all_bars):
 #     position.set_position(0)
 
 
-def close_long_go_short(all_bars, pos):
+def close_long_open_short_position(all_bars, pos):
     close_long(all_bars, pos)
-    go_short(all_bars, pos)
+    open_short_position(all_bars, pos)
 
 
-def close_short_go_long(all_bars, pos):
+def close_short_open_long_position(all_bars, pos):
     close_short(all_bars, pos)
-    go_long(all_bars, pos)
+    open_long_position(all_bars, pos)
 
 
-def go_long(all_bars, pos):
+def open_long_position(all_bars, pos):
     print("Going Long")
+    price = all_bars.last_raw_bar.close
+
     set_position(100)
 
 
-def go_short(all_bars, pos):
+def open_short_position(all_bars, pos):
+    price = all_bars.last_raw_bar.close
     print("Going Short")
     set_position(-100)
 
@@ -91,4 +95,6 @@ def close_long(all_bars, pos):
 
 def close_short(all_bars, pos):
     print("Closing Short")
-    set_position(0)
+    current_price = all_bars.last_raw_bar.close
+    quantity, value = get_quantity_value()
+
