@@ -11,7 +11,7 @@ d = datetime(2022, 9, 27)
 minute_bars = api.get_one_day_minute_bars(d)
 
 for minute_bar in minute_bars:
-    pos = get_position()
-    print("position =", pos)
+    # pos = get_position()
+    # print("position =", pos)
     all_bars.add(minute_bar)
     decide(all_bars)
