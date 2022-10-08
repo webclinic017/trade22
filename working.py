@@ -7,7 +7,7 @@ from position import get_position
 
 all_bars = Bars()
 
-d = datetime(2022, 10, 4)
+d = datetime(2022, 10,3)
 minute_bars = api.get_one_day_minute_bars(d)
 
 for minute_bar in minute_bars:

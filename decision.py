@@ -1,7 +1,7 @@
 import position
 from bars import HAbar, Bar, Bars
 from position import get_position, set_quantity, set_price, set_quantity_price, \
-    add_to_profit_loss
+    add_to_total_profit_loss
 
 
 def decide(all_bars: Bars):
@@ -86,16 +86,17 @@ def close_long(all_bars, pos):
     quantity = pos["quantity"]
     price = pos["price"]
     pl = quantity * (current_price - price)
-    add_to_profit_loss(pl)
+    add_to_total_profit_loss(pl)
 
 
 def close_short(all_bars, pos):
-    print("Closing Short")
-    current_price = all_bars.last_raw_bar.close
+    print("CS", end=" ")
+    buy_price = all_bars.last_raw_bar.close
     quantity = pos["quantity"]
-    price = pos["price"]
-    pl = quantity * (price - current_price)
-    add_to_profit_loss(pl)
+    sell_price = pos["price"]
+    transaction_pl = abs(quantity) * (sell_price - buy_price)
+    add_to_total_profit_loss(transaction_pl)
+    set_quantity(0)
 
 
 def close_long_open_short_position(all_bars, pos):

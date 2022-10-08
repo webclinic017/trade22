@@ -42,6 +42,6 @@ def set_quantity_price(quantity: int, price: float):
     __position["price"] = price
 
 
-def add_to_profit_loss(value: float):
+def add_to_total_profit_loss(value: float):
     __position['profit_loss'] += value
     print("Position: {:d}   PL: {:.2f}".format(__position["quantity"], __position["profit_loss"]))
